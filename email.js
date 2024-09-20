@@ -1,5 +1,6 @@
 var nodemailer = require('nodemailer');
 let code = "" 
+require('dotenv').config();
 
 function sendVerificationMail(mail){
   return new Promise((resolve) =>{
@@ -11,13 +12,13 @@ function sendVerificationMail(mail){
     var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-          user: 'noreply.wolfgame@gmail.com',
-          pass: 'bgme glno wwqp syzp'
+          user: process.env.MAIL,
+          pass: process.env.MAIL_PASS
         }
       });
       
       var mailOptions = {
-        from: 'noreply.wolfgame@gmail.com',
+        from: 'noreply@yolliservices.com',
         to: mail,
         subject: 'Verify email',
         text: `Your code to log in to Magic Manager : ${uuid[0]} \nIf you are not trying to log in just ignore this mail, It's safe :)`
