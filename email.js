@@ -1,4 +1,5 @@
 var nodemailer = require('nodemailer');
+const crypto = require('crypto');
 let code = ""
 require('dotenv').config();
 
