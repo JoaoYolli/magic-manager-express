@@ -1,6 +1,7 @@
 const express = require("express");
 const emailVerificator = require("./email")
 const tokenManager = require("./token-manager")
+const scryfall = require("./scryfall-requests")
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const crypto = require('crypto');
@@ -31,15 +32,25 @@ const server = app.listen(port, /*host,*/ () => {
 });
 
 // Routes
-// app.get("/user/:mail", async (req, res) => {
-//     try {
-//         const mail = req.params.mail;
-//         const respuesta = await db.getUserByMail(mail);
-//         res.status(200).json({ content: JSON.stringify(respuesta) });
-//     } catch (error) {
-//         res.status(500).json({ error: error.message });
-//     }
-// });
+app.get("/randCard", async (req, res) => {
+    try {
+        const respuesta = await scryfall.searchRandCard()
+        console.log(respuesta)
+        res.status(200).json({ respuesta });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.get("/randCommander", async (req, res) => {
+    try {
+        const respuesta = await scryfall.searchRandCommander()
+        console.log(respuesta)
+        res.status(200).json({ respuesta });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
 
 app.post("/send-mail",async (req, res) => {
     try {
