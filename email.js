@@ -13,13 +13,13 @@ function sendVerificationMail(mail) {
     var transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: process.env.MAIL,
+        user: process.env.MAIL_SERVICE,
         pass: process.env.MAIL_PASS
       }
     });
 
     var mailOptions = {
-      from: process.env.MAIL,
+      from: process.env.MAIL_SERVICE,
       to: mail,
       subject: 'Verify email',
       text: `Your code to log in to Magic Manager : ${uuid[0]} \nIf you are not trying to log in just ignore this mail, It's safe :)`
