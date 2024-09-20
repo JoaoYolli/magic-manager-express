@@ -12,6 +12,8 @@ const host = 'localhost';
 const port = process.env.PORT;
 let verifications = {};
 
+
+
 // const corsOptions = {
 //     // origin: 'http://127.0.0.1:5500',
 //     origin: 'https://werewolves-millers-hollow.vercel.app',
@@ -22,7 +24,17 @@ let verifications = {};
 // };
 
 // Middleware
-app.use(cors(/*corsOptions*/));
+// app.use(cors(/*corsOptions*/));
+
+const corsOptions = {
+    origin: 'https://magic-manager.yolli.xyz', // Cambia esto por tu origen
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    preflightContinue: false,
+    optionsSuccessStatus: 204
+};
+
+app.use(cors(corsOptions));
+
 app.use(bodyParser.json());
 
 
